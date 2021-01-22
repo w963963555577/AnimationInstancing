@@ -1,0 +1,30 @@
+﻿// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+
+// Create a RenderTexture with enableRandomWrite flag and set it
+// with cs.SetTexture
+RWTexture2D<float4> Result;
+RWStructuredBuffer<float3> positionOS;
+RWStructuredBuffer<float3> normalOS;
+RWStructuredBuffer<float4> tangentOS;
+int vertexCount;
+int sampleCount;
+
+[numthreads(8, 8, 1)]
+void CSMain(uint3 id: SV_DispatchThreadID)
+{
+    if (id.x < sampleCount)
+    {
+        Result[id.xy] = float4(positionOS[id.x * vertexCount + id.y], 1.0);
+    }
+    else if(id.x < sampleCount * 2.0)
+    {
+        Result[id.xy] = float4(normalOS[(id.x - sampleCount) * vertexCount + id.y], 1.0);
+    }
+    else
+    {
+        Result[id.xy] = tangentOS[(id.x - sampleCount * 2.0) * vertexCount + id.y];
+    }
+    
+    //Result[pixelIndex] = float4(1.0.xxx, 1.0);
+}

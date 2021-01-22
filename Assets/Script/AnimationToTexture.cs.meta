@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: ed70d46429b77af48adeb3036a9948dd
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - recordVertexData: {fileID: 7200000, guid: 3dae035ad0f156247a46ed8c3240144f, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
